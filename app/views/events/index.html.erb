@@ -1,0 +1,12 @@
+<h1> All Upcoming Events </h1>
+
+<ul id="events">
+  <% @events.each do |event| %>
+    <li>
+      <strong><%= link_to event.title, event_path(event) %> </strong><br>
+      <%= event.city %> <%= event.state %> <br><br>
+      <p>Requirement:</p>
+      <%= event.requirements %>
+    </li>
+  <% end %>
+</ul>
