@@ -20,6 +20,7 @@ gem 'paperclip'
 gem 'cloudinary'
 gem 'font-awesome-rails'
 gem 'jquery-ui-rails'
+gem 'geocoder'
 
 
 group :development, :test do

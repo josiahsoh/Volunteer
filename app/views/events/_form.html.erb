@@ -80,8 +80,7 @@
       <%= f.text_field :num_of_volunteer %>
     </p>
     <p>
-      <%= f.label :Deadline_to_Signup %><br />
-      <%= f.text_field :dateline %>
+      Deadline: <%= f.text_field :dateline, :id=>"deadline" %>
     </p>
     <p>
       <%= f.label :Requirements %><br />
@@ -129,6 +128,11 @@
     $('#end_date').datepicker({
       dateFormat: 'dd-mm-yy'
     });
+
+    $('#deadline').datepicker({
+      dateFormat: 'dd-mm-yy'
+    });
+
 
    });
 

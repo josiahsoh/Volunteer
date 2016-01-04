@@ -1,5 +1,6 @@
 
-<img src=<%= @photos %> style="width:100px;height:100px;">
+<div id="photos"><%= render 'photos/list' %></div>
+
 <h1><strong> @organization.name </strong></h1>
 <h2> @organization.location, @organization.state </h2>
 
@@ -8,6 +9,51 @@
 
 <%=link_to "EDIT EVENT", edit_event_path(@event) %>
 <%= link_to "DELETE EVENT", @event, method: :delete %>
+
+<p><strong>This event categories:</strong></p>
+				<% if @event.animals %>
+					Animals, 
+				<% end %> 
+				<% if @event.arts_and_culture %>
+					Arts and Culture, 
+				<% end %> 
+				<% if @event.children_and_youth %>
+					Children and Youth, 
+				<% end %> 
+				<% if @event.community %>
+					Community, 
+				<% end %> 
+				<% if @event.disaster_relief %>
+					Disaster Relief, 
+				<% end %> 
+				<% if @event.education %>
+					Education, 
+				<% end %> 
+				<% if @event.environment %>
+					Environment, 
+				<% end %> 
+				<% if @event.health %>
+					Health, 
+				<% end %> 
+				<% if @event.homeless_and_housing %>
+					Homeless And Housing, 
+				<% end %> 
+				<% if @event.immigrants_refugees %>
+					Immigrants And Refugees, 
+				<% end %> 
+				<% if @event.seniors %>
+					Seniors, 
+				<% end %> 
+				<% if @event.sports %>
+					Sports, 
+				<% end %>
+				<% if @event.technology %>
+					Technology, 
+				<% end %>
+				<% if @event.women %>
+					Women, 
+				<% end %>
+				<br>
 
 <h1><%= @event.num_of_volunteer %></h1>
 <p>More Volunteers Needed</p>
@@ -34,9 +80,39 @@
 
 <p> THE Google MAP(How) </p>
 
+<div id="map"></div>
+
+<style>
+  #map {
+  	width: 100%;
+  	height: 400px;
+  }
+</style>
+
+<script src="http://maps.googleapis.com/maps/api/js"></script>
+<script>
+  function initialize() {
+  	var mapCanvas = document.getElementById('map');
+    var mapOptions = {
+    	center: new google.maps.LatLng(<%= @event.latitude %>, <%= @event.longitude %>),
+    	zoom: 14,
+    	mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    var map = new google.maps.Map(mapCanvas, mapOptions)
+
+    var marker = new google.maps.Marker({
+    	position: new google.maps.LatLng(<%= @event.latitude %>, <%= @event.longitude %>),
+    	title: "VENUE"
+    });
+
+    marker.setMap(map);
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
+
 <h1>What Volunteers have to say </h1>
 
-<p> @users.comment(from user) </p>
+<p> @user.comment(from user) </p>
 
 <p> LEAVE A Comment(from user) </p>
 

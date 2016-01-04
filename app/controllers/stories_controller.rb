@@ -59,7 +59,7 @@ class StoriesController < ApplicationController
   end
 
   private
-    def set_event
+    def set_story
 	  @story = Story.find(params[:id])
 	end
 
