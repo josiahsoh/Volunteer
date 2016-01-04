@@ -1,0 +1,30 @@
+<h1> Write a New Experience </h1>
+
+<%= form_for @story, html: {multipart: true} do |f| %>
+  <ul>
+    <% @story.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+    <p>
+      <%= f.label :Title %><br />
+      <%= f.text_field :title %>
+    </p>
+
+     <p>
+      <%= f.label :Body %><br />
+      <%= f.text_area :body %>
+    </p>
+  
+ 
+  <h1><strong>Pictures</strong></h1>
+    <i class = "fa fa-cloud-upload fa-lg"></i> Upload Photos for story
+    <%= file_field_tag "images[]", type: :file, multiple: true %>
+
+    <div id="photos"><%= render 'photos/list' %></div>
+    
+  <p>
+    <%= f.submit :PUBLISH %>
+  </p>
+
+  <% end %>

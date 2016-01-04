@@ -1,0 +1,15 @@
+<h1> All Stories </h1>
+
+<ul id="stories">
+  <p>Load Photo </p>
+  <% @stories.each do |story| %>
+    <li>
+
+      <strong><%= link_to story.title, story_path(story) %> </strong><br>
+      <%= story.body %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Create a New Story", new_story_path, class: "new_story" %>
+

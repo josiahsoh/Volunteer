@@ -11,16 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160101153016) do
+ActiveRecord::Schema.define(version: 20160104021039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "events", force: :cascade do |t|
     t.integer  "organization_id"
-    t.string   "category",         default: [],              array: true
     t.string   "title"
+    t.text     "description"
     t.boolean  "date_type"
+    t.date     "start_date"
+    t.date     "end_date"
     t.string   "address"
     t.string   "city"
     t.string   "state"
@@ -28,8 +30,44 @@ ActiveRecord::Schema.define(version: 20160101153016) do
     t.integer  "num_of_volunteer"
     t.date     "dateline"
     t.string   "requirements"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.boolean  "arts_and_culture",     default: false
+    t.boolean  "sports",               default: false
+    t.boolean  "animals",              default: false
+    t.boolean  "technology",           default: false
+    t.boolean  "education",            default: false
+    t.boolean  "children_and_youth",   default: false
+    t.boolean  "community",            default: false
+    t.boolean  "environment",          default: false
+    t.boolean  "homeless_and_housing", default: false
+    t.boolean  "women",                default: false
+    t.boolean  "seniors",              default: false
+    t.boolean  "disaster_relief",      default: false
+    t.boolean  "health",               default: false
+    t.boolean  "immigrants_refugees",  default: false
+    t.boolean  "special_events",       default: false
   end
 
+  create_table "photos", force: :cascade do |t|
+    t.integer  "event_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "photos", ["event_id"], name: "index_photos_on_event_id", using: :btree
+
+  create_table "stories", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "photos", "events"
 end

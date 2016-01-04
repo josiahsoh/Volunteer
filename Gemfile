@@ -18,6 +18,8 @@ gem 'figaro'
 gem 'bootstrap-sass'
 gem 'paperclip'
 gem 'cloudinary'
+gem 'font-awesome-rails'
+gem 'jquery-ui-rails'
 
 
 group :development, :test do

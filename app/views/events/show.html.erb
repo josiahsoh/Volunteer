@@ -1,3 +1,45 @@
-<h1><%= @event.title %></h1>
-<p><%= @event.requirement %></p>
-<%= link_to "back", events_path %>
+
+<img src=<%= @photos %> style="width:100px;height:100px;">
+<h1><strong> @organization.name </strong></h1>
+<h2> @organization.location, @organization.state </h2>
+
+<p><strong> We care about </strong></p>
+<h3> @organization.categories(From organization) </h3>
+
+<%=link_to "EDIT EVENT", edit_event_path(@event) %>
+<%= link_to "DELETE EVENT", @event, method: :delete %>
+
+<h1><%= @event.num_of_volunteer %></h1>
+<p>More Volunteers Needed</p>
+
+<h1> 40 (How) </h1>
+<p> Days to Event </p>
+
+
+
+<h1>Event Title:<%= @event.title %></h1>
+<p>Event Description:<%= @event.description %></p>
+<p>Event Start Date:<%= @event.start_date %></p>
+<p>Event End Date:<%= @event.end_date %></p>
+
+<p> @Event.categories(How)</p>
+
+<h1> Volunteer Info </h1>
+<p>Event Requirement:<%= @event.requirements %></p>
+<p>Signup before <%= @event.dateline %>
+<p><%= link_to "Sign up as volunteer", event_path(@event) %>(Which route?)</p>
+
+<h1>Location</h1>
+<p> @Event address:<%= @event.address %>, city:<%= @event.city %>, State:<%= @event.state %>, Country:<%= @event.country %>.</p>
+
+<p> THE Google MAP(How) </p>
+
+<h1>What Volunteers have to say </h1>
+
+<p> @users.comment(from user) </p>
+
+<p> LEAVE A Comment(from user) </p>
+
+<p><%= link_to "Sign up as volunteer", event_path(@event) %></p>
+
+<p>Temporary Back link:<%= link_to "Back", events_path %></p>

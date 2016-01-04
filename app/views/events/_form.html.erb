@@ -1,0 +1,136 @@
+<%= form_for @event, html: {multipart: true} do |f| %>
+  <ul>
+    <% @event.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+    <p>
+      <%= f.label :Title %><br />
+      <%= f.text_field :title %>
+    </p>
+    <p>DATE
+      <%= f.radio_button :date_type, 'True', :name => "data_type", :value => "True" %> Specific
+      <%= f.radio_button :date_type, 'False',:name => "data_type", :value => "False", :checked => "checked" %> Flexible <br>
+      <div id="sspecific" >
+      Start Date: <%= f.text_field :start_date, :id=>"start_date" %>
+      End Date: <%= f.text_field :end_date, :id=>"end_date" %>
+      </div>
+    </p>
+    <p>
+       <%= f.label :Description %>
+       <%= f.text_area :description %>
+    </p>
+
+    <h1><strong>Location</strong></h1>
+
+    <p>
+      <%= f.label :Address %><br />
+      <%= f.text_field :address %>
+    </p>
+    <p>
+      <%= f.label :City %><br />
+      <%= f.text_field :city %>
+    </p>
+    <p>
+      <%= f.label :State %><br />
+      <%= f.text_field :state %>
+    </p>
+    <p>
+      <%= f.label :Country %><br />
+      <%= f.text_field :country %>
+    </p>
+
+    <h1><strong>What causes does your event relate to?</strong></h1>
+
+    <p><%= f.label :"Arts and Culture" %>
+        <%= f.check_box :arts_and_culture %><br>
+        <%= f.label :Sports %>
+        <%= f.check_box :sports %><br>
+        <%= f.label :Animals %>
+        <%= f.check_box :animals %><br>
+        <%= f.label :Technology %>
+        <%= f.check_box :technology %><br>
+        <%= f.label :Education %>
+        <%= f.check_box :education %><br>
+        <%= f.label :"Children and Youth" %>
+        <%= f.check_box :children_and_youth %><br>
+        <%= f.label :Community %>
+        <%= f.check_box :community %><br>
+        <%= f.label :Environment %>
+        <%= f.check_box :environment %><br>
+        <%= f.label :"Homeless and Housing" %>
+        <%= f.check_box :homeless_and_housing %><br>
+        <%= f.label :Women %>
+        <%= f.check_box :women %><br>
+        <%= f.label :Seniors %>
+        <%= f.check_box :seniors %><br>
+        <%= f.label :"Disaster Relief" %>
+        <%= f.check_box :disaster_relief %><br>
+        <%= f.label :Health %>
+        <%= f.check_box :health %><br>
+        <%= f.label :"Immigrants/Refugees" %>
+        <%= f.check_box :immigrants_refugees %><br>
+        <%= f.label :"Special Events" %>
+        <%= f.check_box :special_events %></p>
+
+    <h1><strong>Volunteer Info</strong></h1>
+    
+    <p>
+      <%= f.label :Number_of_Volunteers %><br />
+      <%= f.text_field :num_of_volunteer %>
+    </p>
+    <p>
+      <%= f.label :Deadline_to_Signup %><br />
+      <%= f.text_field :dateline %>
+    </p>
+    <p>
+      <%= f.label :Requirements %><br />
+      <%= f.text_field :requirements %>
+    </p>
+    
+    <h1><strong>Pictures</strong></h1>
+    <i class = "fa fa-cloud-upload fa-lg"></i> Upload Photos for event
+    <%= file_field_tag "images[]", type: :file, multiple: true %>
+
+    <div id="photos"><%= render 'photos/list' %></div>
+    
+    <p>
+      <%= f.submit :COMPLETE %>
+    </p>
+    
+<% end %>
+
+
+
+<script>
+  $(document).ready(function(){
+
+    $("#sspecific").hide();
+
+    $("input:radio[name='data_type']").change(function(){  
+
+            if(this.value == 'True' && this.checked){
+              $("#sspecific").show();
+            }
+            else{
+              $("#sspecific").hide();
+            }
+
+    });
+
+});
+
+  $(function(){
+
+    $('#start_date').datepicker({
+      dateFormat: 'dd-mm-yy'
+    });
+
+    $('#end_date').datepicker({
+      dateFormat: 'dd-mm-yy'
+    });
+
+   });
+
+
+</script>

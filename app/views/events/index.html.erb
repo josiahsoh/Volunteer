@@ -1,6 +1,7 @@
 <h1> All Upcoming Events </h1>
 
 <ul id="events">
+  <img src=<%= @photos %> style="width:100px;height:100px;">
   <% @events.each do |event| %>
     <li>
       <strong><%= link_to event.title, event_path(event) %> </strong><br>
@@ -10,3 +11,6 @@
     </li>
   <% end %>
 </ul>
+
+<%= link_to "Create a New Event", new_event_path, class: "new_event" %>
+

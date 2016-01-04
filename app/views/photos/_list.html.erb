@@ -1,0 +1,11 @@
+<% if @photos %>
+
+ <div class="row">
+   <% @photos.each do |photo| %>
+   <%= image_tag photo.image.url() %>
+ </div>
+ <%= link_to photo, remote: true, method: :delete, data: {confirm: "Are you sure?"} do %>
+   <i class="fa fa-times fa-lg"></i>
+ <% end %>
+ <% end %>
+ <% end %>
